@@ -15,7 +15,7 @@ from lowcost_resnet import ResNet, BasicBlock
 # from hardcodedmodels import *
 from torch.optim.lr_scheduler import MultiStepLR
 
-try_no = ['DW', ]
+try_no = ['2mm', ]
 activate = ['relu', ]
 # mods = [HiResC([18, 18, 18]), ResNet(BasicBlock, [18, 18, 18])]
 
