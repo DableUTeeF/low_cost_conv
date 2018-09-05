@@ -62,8 +62,10 @@ def progress_bar(current, total, msg=None):
     cur_len = int(TOTAL_BAR_LENGTH * current / total)
     rest_len = int(TOTAL_BAR_LENGTH - cur_len) - 1
     lens = len(str(total))
-    sys.stdout.write(f' {current + 1: 0{lens}}/{total} ')
-    sys.stdout.write('[')
+    # sys.stdout.write(f' {current + 1: 0{lens}}/{total} ')
+    sys.stdout.write('%d' % ((current+1)*100/total))
+    sys.stdout.write('%')
+    sys.stdout.write(' [')
     for i in range(cur_len):
         sys.stdout.write('=')
     sys.stdout.write('>')
@@ -75,21 +77,25 @@ def progress_bar(current, total, msg=None):
     step_time = cur_time - last_time
     last_time = cur_time
     tot_time = cur_time - begin_time
-
-    L = ['ETA: %s' % format_time(step_time*(total-current)), ' | Tot: %s' % format_time(tot_time)]
+    L = []
+    if current + 1 >= total:
+        L.append('Tot: %s' % format_time(tot_time))
+    else:
+        L.append('ETA: %s' % format_time(step_time*(total-current)))
     if msg:
         L.append(' | ' + msg)
 
     msg = ''.join(L)
     sys.stdout.write(msg)
-    for i in range(term_width - int(TOTAL_BAR_LENGTH) - len(msg) - 3):
-        sys.stdout.write(' ')
+    # for i in range(term_width - int(TOTAL_BAR_LENGTH) - len(msg) - 1):
+    #     sys.stdout.write(' ')
+    sys.stdout.write(' ')
 
     # Go back to the center of the bar.
     for i in range(term_width - int(TOTAL_BAR_LENGTH / 2)):
         sys.stdout.write('\b')
-    sys.stdout.write('%d' % (current/total*100))
-    sys.stdout.write('%')
+    # sys.stdout.write('%d' % ((current + 1) * 100 / total))
+    # sys.stdout.write('%')
     if current < total - 1:
         sys.stdout.write('\r')
     else:
