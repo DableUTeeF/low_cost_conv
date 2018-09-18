@@ -14,19 +14,8 @@
 |LowcostC        |15s122ms          |91.88@157      |425394176.0|
 |LowcostCrelu6   |15s122ms          |91.44@172      |425394176.0|
 |LowcostD        |18s502ms          |91.85@167      |425394176.0|
-|LowcostE        |17s702ms          |91.85@167      |425394176.0|
-
-
-### Conv->DW2BN->Conv
-|     Layer     |in plane|out plane| w | h |multiply| stride|
-|---------------|--------|---------|---|---|--------|-------|
-|LowcostConv    |3       |64       |32 |32 |2       |1      |
-|LowcostDW2BN   |64      |64       |32 |32 |4       |1      |
-|LowcostDW2BN   |64      |64       |32 |32 |4       |1      |
-|LowcostDW2BN   |64      |128      |16 |16 |4       |2      |
-|LowcostDW2BN   |128     |128      |16 |16 |4       |1      |
-|LowcostDW2BN   |128     |256      |8  |8  |4       |2      |
-|LowcostDW2BN   |256     |256      |8  |8  |4       |1      |
+|LowcostE        |17s702ms          |92.05@170      |425394176.0|
+|LowcostCnewlr   |15s122ms          |91.54@176      |425394176.0|
 
 # Graph
 ## Resnet20 vs Current Best Model

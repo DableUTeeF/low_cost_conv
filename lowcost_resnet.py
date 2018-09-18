@@ -69,7 +69,7 @@ class LowcostSqueeze(nn.Module):
         # x = self.squeeze(x)
         x = self.conv(x)
         x = self.bn(x)
-        x = swish(x)
+        x = F.relu(x)
         x = self.expand(x)
         return x
 
@@ -369,7 +369,7 @@ class LowcostNetE(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(LowcostNetE, self).__init__()
         self.in_planes = 64
-        self.conv1 = LowcostSqueeze(3, 64, 32, 32, stride=1, multiply=self.m)
+        self.conv1 = LowcostConv(3, 64, 32, 32, stride=1, multiply=self.m)
         self.block1a = ConvBlock(64, 64, 32, 32, stride=1, multiply=self.m)
         self.block1b = ConvBlock(64, 64, 32, 32, stride=1, multiply=self.m)
         self.block2a = ConvBlock(64, 128, 16, 16, stride=2, multiply=self.m)
